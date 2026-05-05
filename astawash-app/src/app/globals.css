@@ -1,5 +1,14 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: 'Tera';
+  src: url('https://www.metaappz.com/fonts/Tera-Regular.woff2') format('woff2'),
+       url('https://www.metaappz.com/fonts/Tera-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 @theme {
   --color-primary: #2563EB;
   --color-black: #000000;
@@ -8,6 +17,10 @@
   --font-display: var(--font-manrope), sans-serif;
   --shadow-soft: 0 12px 40px rgba(37, 99, 235, 0.08);
   --shadow-hover: 0 20px 40px rgba(37, 99, 235, 0.15);
+}
+
+[data-lang="am"] {
+  --font-display: 'Tera', var(--font-ethiopic), sans-serif !important;
 }
 
 @utility hide-scrollbar {

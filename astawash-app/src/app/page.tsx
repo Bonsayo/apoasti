@@ -1,15 +1,63 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import TopNavBar from "@/components/TopNavBar";
 import BottomNav from "@/components/BottomNav";
+import { useLanguage } from "@/context/LanguageContext";
+
+function HeroSlider() {
+  const { t } = useLanguage();
+  const [current, setCurrent] = useState(0);
+  
+  const slides = [
+    { image: "/hero-1.png" },
+    { image: "/hero-2.png" },
+    { image: "/hero-3.png" },
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % slides.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [slides.length]);
+
+  return (
+    <div className="w-full h-[160px] md:h-[250px] relative rounded-[2rem] md:rounded-[3rem] overflow-hidden group shadow-2xl border border-[#000000]/5">
+      {slides.map((slide, idx) => (
+        <div 
+          key={idx}
+          className={`absolute inset-0 transition-all duration-1000 ease-in-out ${idx === current ? 'opacity-100 scale-100' : 'opacity-0 scale-110'}`}
+        >
+          <img src={slide.image} alt="Promotion" className="w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#000000]/40 to-transparent" />
+        </div>
+      ))}
+      
+      {/* Dots */}
+      <div className="absolute bottom-10 right-12 flex gap-3 z-20">
+        {slides.map((_, idx) => (
+          <button 
+            key={idx}
+            onClick={() => setCurrent(idx)}
+            className={`h-2 rounded-full transition-all duration-500 ${idx === current ? 'w-12 bg-white' : 'w-2 bg-white/30 hover:bg-white/50'}`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 
 export default function PlatformHome() {
+  const { t } = useLanguage();
+
   const sectors = [
     {
       id: "healthcare",
-      title: "Healthcare",
-      description: "Book hospitals, clinics, and leading specialists instantly.",
+      title: t("Healthcare", "ጤና አጠባበቅ"),
+      description: t("Book hospitals, clinics, and leading specialists instantly.", "ሆስፒታሎችን፣ ክሊኒኮችን እና ቀዳሚ ስፔሻሊስቶችን በፍጥነት ይያዙ።"),
       icon: "medical_services",
       href: "/healthcare",
       active: true,
@@ -17,8 +65,8 @@ export default function PlatformHome() {
     },
     {
       id: "government",
-      title: "Government",
-      description: "Kebele, Woreda, and official civil services.",
+      title: t("Government", "መንግስታዊ አገልግሎቶች"),
+      description: t("Kebele, Woreda, and official civil services.", "የቀበሌ፣ የወረዳ እና ይፋዊ ሲቪል አገልግሎቶች።"),
       icon: "account_balance",
       href: "#",
       active: false,
@@ -26,8 +74,8 @@ export default function PlatformHome() {
     },
     {
       id: "fuel-station",
-      title: "Fuel Station",
-      description: "Find nearby stations and check fuel availability.",
+      title: t("Fuel Station", "የነዳጅ ማደያ"),
+      description: t("Find nearby stations and check fuel availability.", "አቅራቢያ የሚገኙ ማደያዎችን ያግኙ እና የነዳጅ መኖርን ያረጋግጡ።"),
       icon: "local_gas_station",
       href: "/fuel-station",
       active: true,
@@ -35,8 +83,8 @@ export default function PlatformHome() {
     },
     {
       id: "banking",
-      title: "Finance",
-      description: "Bank appointments and financial consultations.",
+      title: t("Finance", "ፋይናንስ"),
+      description: t("Bank appointments and financial consultations.", "የባንክ ቀጠሮዎች እና የፋይናንስ ምክክሮች።"),
       icon: "account_balance_wallet",
       href: "#",
       active: false,
@@ -57,15 +105,18 @@ export default function PlatformHome() {
       <main className="relative flex-1 flex flex-col items-center w-full pb-32 pt-32 md:pt-40 px-6 md:px-12">
         <div className="w-full max-w-[1200px] flex flex-col gap-20 md:gap-32">
           
+          {/* Hero Slider */}
+          <HeroSlider />
+
           {/* Hero Section */}
           <section className="w-full flex flex-col items-start gap-8 max-w-5xl">
             <h1 className="text-6xl md:text-8xl lg:text-9xl font-black leading-[0.95] tracking-tighter text-[#000000]">
-              Book services. <br />
-              <span className="text-[#2563EB]">Instantly.</span>
+              {t("Book services.", "አገልግሎቶችን ይያዙ።")} <br />
+              <span className="text-[#2563EB]">{t("Instantly.", "በቅጽበት።")}</span>
             </h1>
             
             <p className="text-xl md:text-3xl text-[#000000]/40 font-medium max-w-3xl leading-tight">
-              Experience a seamless, unified gateway to your healthcare, government, and financial appointments.
+              {t("Experience a seamless, unified gateway to your healthcare, government, and financial appointments.", "ለጤና፣ ለመንግስት እና ለፋይናንስ ቀጠሮዎችዎ እንከን የለሽ እና የተዋሃደ መግቢያን ይለማመዱ።")}
             </p>
           </section>
 
@@ -77,15 +128,7 @@ export default function PlatformHome() {
             ></div>
           </div>
 
-          {/* Promotional Banner Area - Admin configurable */}
-          <div className="w-full bg-[#F1F5F9] rounded-[2.5rem] border border-[#000000]/5 flex justify-center overflow-hidden group cursor-pointer shadow-inner">
-            <div className="w-full h-24 md:h-32 relative">
-              <div className="absolute inset-0 flex items-center justify-center text-[#000000]/20 border-2 border-dashed border-[#000000]/10 m-3 rounded-[1.5rem] group-hover:border-[#2563EB]/30 group-hover:text-[#2563EB]/40 transition-all duration-500">
-                <span className="material-symbols-outlined text-3xl mr-3">campaign</span>
-                <span className="text-xs font-black uppercase tracking-[0.3em]">Sponsored Space</span>
-              </div>
-            </div>
-          </div>
+
 
           {/* Sectors Grid */}
           <section className="w-full grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
@@ -115,7 +158,7 @@ export default function PlatformHome() {
                   
                   {!sector.active ? (
                     <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#000000]/30 bg-[#000000]/5 px-4 py-2 rounded-full">
-                      Coming Soon
+                      {t("Coming Soon", "በቅርቡ ይጠብቁ")}
                     </span>
                   ) : (
                     <div className="w-14 h-14 rounded-full border-2 border-[#000000]/5 flex items-center justify-center group-hover:border-[#2563EB] group-hover:bg-[#2563EB] transition-all duration-500">

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Manrope } from "next/font/google";
+import { Manrope, Noto_Sans_Ethiopic } from "next/font/google";
 import "./globals.css";
 
 const manrope = Manrope({
@@ -8,10 +8,18 @@ const manrope = Manrope({
   display: "swap",
 });
 
+const notoEthiopic = Noto_Sans_Ethiopic({
+  variable: "--font-ethiopic",
+  subsets: ["ethiopic"],
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: "Astawash Healthcare",
   description: "Complete Booking - Astawash",
 };
+
+import { LanguageProvider } from "@/context/LanguageContext";
 
 export default function RootLayout({
   children,
@@ -19,10 +27,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${manrope.variable}`}>
+    <html lang="en" suppressHydrationWarning className={`${manrope.variable} ${notoEthiopic.variable}`}>
       <body suppressHydrationWarning className="bg-[#f5f7f8] font-display text-slate-900 min-h-screen flex flex-col antialiased">
         <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" precedence="default" />
-        {children}
+        <LanguageProvider>
+          {children}
+        </LanguageProvider>
       </body>
     </html>
   );

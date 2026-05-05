@@ -1,0 +1,84 @@
+{
+  "categories": [
+    {
+      "id": "general-hospitals",
+      "name": "General Hospitals",
+      "facilities": {
+        "public": [
+          { "name": "Tikur Anbessa (Black Lion)", "features": "The country's largest referral and teaching hospital." },
+          { "name": "St. Paul’s Millennium Medical College", "features": "Leading center for specialized surgery and medical education." },
+          { "name": "Yekatit 12 Medical College", "features": "Renowned for its burn center and plastic surgery departments." },
+          { "name": "Menelik II Referral Hospital", "features": "One of Ethiopia's oldest and most versatile public hospitals." },
+          { "name": "Zewditu Memorial Hospital", "features": "A major center for maternal health and general internal medicine." }
+        ],
+        "private": [
+          { "name": "Nordic Medical Centre (NMC)", "features": "High international standards with a focus on emergency care." },
+          { "name": "Landmark General Hospital", "features": "Well-regarded for surgical precision and advanced diagnostics." },
+          { "name": "Kadisco General Hospital", "features": "Provides a wide range of specialized care with modern equipment." },
+          { "name": "Bethzatha General Hospital", "features": "A long-standing private facility known for diverse specialty wings." },
+          { "name": "Hayat Hospital", "features": "Offers comprehensive 24/7 emergency and inpatient services." }
+        ]
+      }
+    },
+    {
+      "id": "dental-clinics",
+      "name": "Dental Clinics",
+      "facilities": {
+        "public": [
+          { "name": "ALERT Hospital Dental Unit", "features": "Specialized oral and maxillofacial surgical services." },
+          { "name": "St. Paul’s Dental Department", "features": "Comprehensive public dental care and training facility." },
+          { "name": "Tikur Anbessa Dental Unit", "features": "Tertiary-level dental care for complex cases." },
+          { "name": "Menelik II Dental Clinic", "features": "General public dental services (extractions, fillings, cleaning)." },
+          { "name": "Tirunesh Beijing Dental Unit", "features": "Provides essential dental services in the Akaki Kality area." }
+        ],
+        "private": [
+          { "name": "Smile Specialty Dental Center", "features": "Premier digital dentistry, implants, and orthodontics." },
+          { "name": "Ye-Almaz Dental Clinic", "features": "Popular for pediatric dentistry and cosmetic procedures." },
+          { "name": "Legacy Dental Clinic", "features": "Specialized in restorative surgery and aesthetic dental care." },
+          { "name": "NovoCare Dental Clinic", "features": "Known for emergency dental care and same-day treatments." },
+          { "name": "Bethel Dental Clinic", "features": "Focused on professional orthodontics and root canal therapy." }
+        ]
+      }
+    },
+    {
+      "id": "eye-clinics",
+      "name": "Eye Clinics (Ophthalmology)",
+      "facilities": {
+        "public": [
+          { "name": "Menelik II Eye Hospital", "features": "The primary public specialized center for eye surgery." },
+          { "name": "Tikur Anbessa Eye Unit", "features": "Advanced tertiary eye care, including retina and cornea services." },
+          { "name": "ALERT Hospital Eye Clinic", "features": "Comprehensive preventative and surgical eye services." },
+          { "name": "St. Paul’s Ophthalmology Dept", "features": "Modern department offering specialized eye surgeries." },
+          { "name": "Ras Desta Damtew Eye Unit", "features": "Reliable public center for cataract surgery and exams." }
+        ],
+        "private": [
+          { "name": "WGGA Eye Center", "features": "One of the most advanced private laser eye centers." },
+          { "name": "Addis Ababa Eye Clinic", "features": "Expert care for myopia and pediatric ophthalmology." },
+          { "name": "Berhanena Selam Eye Clinic", "features": "Long-standing reputation for diagnostic and surgical quality." },
+          { "name": "Glassland Eye Clinic", "features": "Focuses on refractive errors and specialized contact lenses." },
+          { "name": "Zemen Eye Clinic", "features": "Offers modern diagnostic tools and specialized outpatient care." }
+        ]
+      }
+    },
+    {
+      "id": "dermatological-clinics",
+      "name": "Dermatological Clinics (Skin Care)",
+      "facilities": {
+        "public": [
+          { "name": "ALERT National Dermatology Center", "features": "The national center of excellence for skin diseases." },
+          { "name": "St. Paul’s Dermatology Dept", "features": "Specialized care for chronic and infectious skin conditions." },
+          { "name": "Tikur Anbessa Dermatology Unit", "features": "Focuses on complex dermatological diagnosis and research." },
+          { "name": "Yekatit 12 Dermatology Clinic", "features": "General skin treatments provided by resident specialists." },
+          { "name": "Ras Desta Damtew Derma Unit", "features": "Publicly funded clinic for dermato-venereology services." }
+        ],
+        "private": [
+          { "name": "Allure Dermatology & Laser Centre", "features": "Premier center for cosmetic dermatology and laser therapy." },
+          { "name": "Amren Specialized Dermatology", "features": "Focused on personalized acne and eczema treatments." },
+          { "name": "Dr. Ruth Leekassa Derma Clinic", "features": "High-rated clinic for both clinical and aesthetic skin care." },
+          { "name": "Dr. Belaynew Taye Derma Clinic", "features": "Renowned for treating chronic and complex skin conditions." },
+          { "name": "Girum Hospital (Derma Wing)", "features": "Integrated hospital-based dermatology with modern equipment." }
+        ]
+      }
+    }
+  ]
+}

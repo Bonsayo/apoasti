@@ -1,13 +1,17 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import TopNavBar from "@/components/TopNavBar";
 import BottomNav from "@/components/BottomNav";
 import { getAllBookings, updateBookingStatus, Booking } from "@/data/bookings";
 
+import { useLanguage } from "@/context/LanguageContext";
+
 export default function AppointmentsPage() {
   const [bookings, setBookings] = useState<Booking[]>([]);
   const [cancelling, setCancelling] = useState<string | null>(null);
+  const { t } = useLanguage();
 
   const load = () => {
     const all = getAllBookings().filter(b => b.status !== "cancelled");
@@ -44,15 +48,14 @@ export default function AppointmentsPage() {
         <div className="flex flex-col gap-8">
 
           <div className="flex flex-col gap-2">
-            <h1 className="text-4xl font-black">My Appointments</h1>
-            <p className="text-sm font-bold text-[#2563EB]">ቀጠሮዎቼ</p>
+            <h1 className="text-4xl font-black">{t("My Appointments", "ቀጠሮዎቼ")}</h1>
           </div>
 
           {bookings.length === 0 ? (
             <div className="flex flex-col items-center justify-center py-24 gap-4 bg-white rounded-[2.5rem] border border-[#000000]/5">
               <span className="material-symbols-outlined text-[64px] text-[#000000]/10">calendar_month</span>
-              <p className="text-xl font-black text-[#000000]/20">No appointments yet</p>
-              <p className="text-sm font-bold text-[#000000]/20">Book a hospital visit to see it here</p>
+              <p className="text-xl font-black text-[#000000]/20">{t("No appointments yet", "ምንም ቀጠሮ የለም")}</p>
+              <p className="text-sm font-bold text-[#000000]/20">{t("Book a hospital visit to see it here", "ቀጠሮዎን እዚህ ለማየት ሆስፒታል ይያዙ")}</p>
             </div>
           ) : (
             <div className="flex flex-col gap-4">
@@ -130,9 +133,9 @@ export default function AppointmentsPage() {
                         {cancelling === booking.id ? (
                           <>
                             <span className="w-4 h-4 border-2 border-red-400 border-t-transparent rounded-full animate-spin"></span>
-                            Cancelling...
+                            {t("Cancelling...", "በመሰረዝ ላይ...")}
                           </>
-                        ) : "CANCEL APPOINTMENT"}
+                        ) : t("CANCEL APPOINTMENT", "ቀጠሮውን ሰርዝ")}
                       </button>
                     </div>
                   )}
@@ -144,7 +147,7 @@ export default function AppointmentsPage() {
           <div className="flex items-center gap-4 p-6 bg-blue-50 rounded-[1.5rem] border border-blue-100">
             <span className="material-symbols-outlined text-blue-600">info</span>
             <p className="text-xs font-bold text-blue-900/60 leading-relaxed">
-              Arrive 15 minutes before your time and show your booking code at the reception desk to skip the queue.
+              {t("Arrive 15 minutes before your time and show your booking code at the reception desk to skip the queue.", "ከቀጠሮዎ ሰዓት 15 ደቂቃ ቀደም ብለው ይድረሱ እና ወረፋውን ለማስቀረት የያዙትን ኮድ ለሪሴፕሽኑ ያሳዩ።")}
             </p>
           </div>
 

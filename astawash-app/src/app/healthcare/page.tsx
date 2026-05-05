@@ -4,15 +4,17 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import TopNavBar from "@/components/TopNavBar";
 import BottomNav from "@/components/BottomNav";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function HealthcareHome() {
   const router = useRouter();
+  const { t, language } = useLanguage();
 
   const specialties = [
-    { name: "Teeth", icon: "dentistry", active: true, color: "bg-[#2563EB]/5 text-[#2563EB]", desc: "Dental care & checkups" },
-    { name: "General", icon: "stethoscope", active: true, color: "bg-[#2563EB]/5 text-[#2563EB]", desc: "General health & GP" },
-    { name: "Eyes", icon: "visibility", active: true, color: "bg-[#2563EB]/5 text-[#2563EB]", desc: "Vision & eye care" },
-    { name: "Skin", icon: "healing", active: true, color: "bg-[#2563EB]/5 text-[#2563EB]", desc: "Dermatology & skin" }
+    { name: t("Teeth", "ጥርስ"), id: "teeth", icon: "dentistry", active: true, color: "bg-[#2563EB]/5 text-[#2563EB]", desc: t("Dental care & checkups", "የጥርስ ሕክምና እና ምርመራ") },
+    { name: t("General", "ጠቅላላ"), id: "general", icon: "stethoscope", active: true, color: "bg-[#2563EB]/5 text-[#2563EB]", desc: t("General health & GP", "የጠቅላላ ሕክምና") },
+    { name: t("Eyes", "አይን"), id: "eyes", icon: "visibility", active: true, color: "bg-[#2563EB]/5 text-[#2563EB]", desc: t("Vision & eye care", "የዓይን ሕክምና እና እንክብካቤ") },
+    { name: t("Skin", "ቆዳ"), id: "skin", icon: "healing", active: true, color: "bg-[#2563EB]/5 text-[#2563EB]", desc: t("Dermatology & skin", "የቆዳ ሕክምና") }
   ];
 
   return (
@@ -31,11 +33,11 @@ export default function HealthcareHome() {
           {/* Hero Section */}
           <section className="w-full flex flex-col gap-6 max-w-4xl">
             <h1 className="text-5xl md:text-7xl font-black leading-[1.1] tracking-tight text-[#000000]">
-              How can we <span className="text-[#2563EB]">help</span> you today?
+              {t("How can we", "ዛሬ እንዴት")} <span className="text-[#2563EB]">{t("help", "ልንረዳዎት")}</span> {t("you today?", "እንችላለን?")}
             </h1>
             
             <p className="text-xl md:text-2xl text-[#000000]/60 font-medium max-w-2xl leading-relaxed">
-              Find and book the right medical care in seconds. From specialized clinics to general hospitals.
+              {t("Find and book the right medical care in seconds. From specialized clinics to general hospitals.", "ትክክለኛውን የሕክምና አገልግሎት በሰከንዶች ውስጥ ያግኙ እና ቀጠሮ ይያዙ። ከልዩ ክሊኒኮች እስከ ጠቅላላ ሆስፒታሎች።")}
             </p>
           </section>
 
@@ -56,8 +58,8 @@ export default function HealthcareHome() {
             >
               <div className="absolute inset-0 bg-gradient-to-r from-[#2563EB] to-[#2563EB]/0 opacity-0 group-hover:opacity-20 transition-opacity duration-500"></div>
               <div className="flex flex-col items-start relative z-10">
-                <span className="text-[10px] font-black uppercase tracking-[0.3em] text-[#FFFFFF]/40 mb-1">Advanced Search</span>
-                <span className="text-xl md:text-2xl font-black tracking-tight">FIND ALL HOSPITALS</span>
+                <span className="text-[10px] font-black uppercase tracking-[0.3em] text-[#FFFFFF]/40 mb-1">{t("Advanced Search", "የላቀ ፍለጋ")}</span>
+                <span className="text-xl md:text-2xl font-black tracking-tight">{t("FIND ALL HOSPITALS", "ሁሉንም ሆስፒታሎች ያግኙ")}</span>
               </div>
               <div className="w-12 h-12 md:w-14 md:h-14 bg-[#FFFFFF] text-[#000000] rounded-full flex items-center justify-center transition-transform duration-500 group-hover:rotate-[360deg] group-hover:scale-110">
                 <span className="material-symbols-outlined text-[28px] md:text-[32px]">search</span>
@@ -68,15 +70,15 @@ export default function HealthcareHome() {
           {/* Specialties Grid */}
           <section className="w-full flex flex-col gap-8 mt-4">
             <div className="flex items-center justify-between">
-              <h2 className="text-2xl font-black tracking-tight text-[#000000]">Specialized Care</h2>
+              <h2 className="text-2xl font-black tracking-tight text-[#000000]">{t("Specialized Care", "ልዩ የሕክምና አገልግሎቶች")}</h2>
               <div className="h-[2px] grow bg-[#000000]/5 mx-6 hidden md:block"></div>
             </div>
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 w-full">
               {specialties.map((specialty) => (
                 <button 
-                  key={specialty.name}
-                  onClick={() => router.push(`/selection?type=${specialty.name.toLowerCase()}`)}
+                  key={specialty.id}
+                  onClick={() => router.push(`/selection?type=${specialty.id}`)}
                   className="group relative flex flex-col items-start p-6 md:p-8 rounded-[2.5rem] border border-[#000000]/5 bg-[#FFFFFF] transition-all duration-500 text-left hover:border-[#2563EB]/20 hover:shadow-[0_20px_50px_rgba(37,99,235,0.08)] hover:-translate-y-2 cursor-pointer"
                 >
                   <div className={`w-14 h-14 md:w-16 md:h-16 rounded-[1.5rem] flex items-center justify-center mb-6 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 ${specialty.color}`}>
